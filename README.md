@@ -1,7 +1,7 @@
 ## chron
 it's time :]
 
-![](https://github.com/dustinevan/chron/blob/master/chron.png "chron")
+![](https://github.com/ratioacct/chron/blob/master/chron.png "chron")
 
 Chron is a general purpose time library that embeds `time.Time` and can be used as a replacement. Chron uses `time.Time` for calculations, so you can trust its accuracy.
 
@@ -15,7 +15,7 @@ chron.Span // a time interval with an exact start and end, like the year 2018
 ```
 The implementations of these interfaces map to different time precisions. These types make it easier to reason about the times, durations, and spans represented in your program. They also provide ways to operate on times in a way that clearly shows precision. The type system is shown below:
 
-![](https://github.com/dustinevan/chron/blob/master/typesystem.png "type system")
+![](https://github.com/ratioacct/chron/blob/master/typesystem.png "type system")
 
 #### chron.Time implementations
 

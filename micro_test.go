@@ -1,11 +1,11 @@
 package chron
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/dustinevan/chron/dura"
-	"time"
 	"database/sql/driver"
+	"github.com/ratioacct/chron/dura"
+	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 var tmicro = time.Date(2018, time.June, 5, 12, 10, 6, 55000, time.UTC)
@@ -30,7 +30,7 @@ func TestMicro_Transfers(t *testing.T) {
 }
 
 func TestMicro_Increment(t *testing.T) {
-	y := micro.Increment(dura.NewDuration(1, 2, 30, time.Microsecond * 500))
+	y := micro.Increment(dura.NewDuration(1, 2, 30, time.Microsecond*500))
 	td := tmicro.AddDate(1, 2, 30).Add(time.Microsecond * 500)
 	assert.Exactly(t, td, y.Time)
 }
@@ -40,7 +40,7 @@ func TestMicro_AsTime(t *testing.T) {
 }
 
 func TestMicro_Decrement(t *testing.T) {
-	d := micro.Decrement(dura.NewDuration(1, 2, 30, time.Microsecond * 500))
+	d := micro.Decrement(dura.NewDuration(1, 2, 30, time.Microsecond*500))
 	td := tmicro.AddDate(-1, -2, -30).Add(time.Microsecond * -500)
 	assert.Exactly(t, td, d.Time)
 
@@ -55,7 +55,7 @@ func TestMicro_Start(t *testing.T) {
 }
 
 func TestMicro_End(t *testing.T) {
-	assert.Exactly(t, micro.Time.Add(time.Microsecond + (-1 * time.Nanosecond)), micro.End().Time)
+	assert.Exactly(t, micro.Time.Add(time.Microsecond+(-1*time.Nanosecond)), micro.End().Time)
 }
 
 func TestMicro_Contains(t *testing.T) {
@@ -69,7 +69,7 @@ func TestMicro_Duration(t *testing.T) {
 
 func TestMicro_AddFns(t *testing.T) {
 	assert.Exactly(t, micro.AddYears(2), NewMicro(2020, time.June, 5, 12, 10, 6, 55))
-	assert.Exactly(t, micro.AddMonths(25), NewMicro(2020, time.July, 5, 12, 10,6, 55))
+	assert.Exactly(t, micro.AddMonths(25), NewMicro(2020, time.July, 5, 12, 10, 6, 55))
 	assert.Exactly(t, micro.AddDays(2), NewMicro(2018, time.June, 7, 12, 10, 6, 55))
 	assert.Exactly(t, micro.AddHours(25), NewMicro(2018, time.June, 6, 13, 10, 6, 55))
 	assert.Exactly(t, micro.AddMinutes(72), NewMicro(2018, time.June, 5, 13, 22, 6, 55))

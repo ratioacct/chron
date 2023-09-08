@@ -3,10 +3,10 @@ package chron
 import (
 	"time"
 
-	"github.com/dustinevan/chron/dura"
-	"fmt"
-	"reflect"
 	"database/sql/driver"
+	"fmt"
+	"github.com/ratioacct/chron/dura"
+	"reflect"
 	"strings"
 )
 
@@ -27,16 +27,16 @@ func HourOf(t time.Time) Hour {
 	return NewHour(t.Year(), t.Month(), t.Day(), t.Hour())
 }
 
-func (h Hour) AsYear() Year       { return YearOf(h.Time) }
-func (h Hour) AsMonth() Month     { return MonthOf(h.Time) }
-func (h Hour) AsDay() Day         { return DayOf(h.Time) }
-func (h Hour) AsHour() Hour       { return h }
-func (h Hour) AsMinute() Minute   { return MinuteOf(h.Time) }
-func (h Hour) AsSecond() Second   { return SecondOf(h.Time) }
-func (h Hour) AsMilli() Milli     { return MilliOf(h.Time) }
-func (h Hour) AsMicro() Micro     { return MicroOf(h.Time) }
-func (h Hour) AsChron() Chron { return TimeOf(h.Time) }
-func (h Hour) AsTime() time.Time  { return h.Time }
+func (h Hour) AsYear() Year      { return YearOf(h.Time) }
+func (h Hour) AsMonth() Month    { return MonthOf(h.Time) }
+func (h Hour) AsDay() Day        { return DayOf(h.Time) }
+func (h Hour) AsHour() Hour      { return h }
+func (h Hour) AsMinute() Minute  { return MinuteOf(h.Time) }
+func (h Hour) AsSecond() Second  { return SecondOf(h.Time) }
+func (h Hour) AsMilli() Milli    { return MilliOf(h.Time) }
+func (h Hour) AsMicro() Micro    { return MicroOf(h.Time) }
+func (h Hour) AsChron() Chron    { return TimeOf(h.Time) }
+func (h Hour) AsTime() time.Time { return h.Time }
 
 func (h Hour) Increment(l dura.Time) Chron {
 	return Chron{h.AddDate(l.Years(), l.Months(), l.Days()).Add(l.Duration())}

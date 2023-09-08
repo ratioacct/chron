@@ -8,7 +8,7 @@ import (
 
 	"database/sql/driver"
 
-	"github.com/dustinevan/chron/dura"
+	"github.com/ratioacct/chron/dura"
 	"strings"
 )
 
@@ -31,16 +31,16 @@ func DayOf(t time.Time) Day {
 }
 
 // chron.Time implementation
-func (d Day) AsYear() Year       { return YearOf(d.Time) }
-func (d Day) AsMonth() Month     { return MonthOf(d.Time) }
-func (d Day) AsDay() Day         { return d }
-func (d Day) AsHour() Hour       { return HourOf(d.Time) }
-func (d Day) AsMinute() Minute   { return MinuteOf(d.Time) }
-func (d Day) AsSecond() Second   { return SecondOf(d.Time) }
-func (d Day) AsMilli() Milli     { return MilliOf(d.Time) }
-func (d Day) AsMicro() Micro     { return MicroOf(d.Time) }
-func (d Day) AsChron() Chron { return TimeOf(d.Time) }
-func (d Day) AsTime() time.Time  { return d.Time }
+func (d Day) AsYear() Year      { return YearOf(d.Time) }
+func (d Day) AsMonth() Month    { return MonthOf(d.Time) }
+func (d Day) AsDay() Day        { return d }
+func (d Day) AsHour() Hour      { return HourOf(d.Time) }
+func (d Day) AsMinute() Minute  { return MinuteOf(d.Time) }
+func (d Day) AsSecond() Second  { return SecondOf(d.Time) }
+func (d Day) AsMilli() Milli    { return MilliOf(d.Time) }
+func (d Day) AsMicro() Micro    { return MicroOf(d.Time) }
+func (d Day) AsChron() Chron    { return TimeOf(d.Time) }
+func (d Day) AsTime() time.Time { return d.Time }
 
 func (d Day) Increment(t dura.Time) Chron {
 	return Chron{d.AddDate(t.Years(), t.Months(), t.Days()).Add(t.Duration())}
@@ -132,7 +132,6 @@ func (d *Day) Scan(value interface{}) error {
 func (d Day) Value() (driver.Value, error) {
 	return d.Time, nil
 }
-
 
 func (d *Day) UnmarshalJSON(data []byte) error {
 	if string(data) == "null" {

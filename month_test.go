@@ -1,11 +1,11 @@
 package chron
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/dustinevan/chron/dura"
-	"time"
 	"database/sql/driver"
+	"github.com/ratioacct/chron/dura"
+	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 var tmonth = time.Date(2018, time.April, 1, 0, 0, 0, 0, time.UTC)
@@ -36,7 +36,7 @@ func TestMonth_Transfers(t *testing.T) {
 }
 
 func TestMonth_Increment(t *testing.T) {
-	y := month.Increment(dura.NewDuration(1, 2, 30, time.Second * 500))
+	y := month.Increment(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tmonth.AddDate(1, 2, 30).Add(time.Second * 500)
 	assert.Exactly(t, td, y.Time)
 }
@@ -46,7 +46,7 @@ func TestMonth_AsTime(t *testing.T) {
 }
 
 func TestMonth_Decrement(t *testing.T) {
-	d := month.Decrement(dura.NewDuration(1, 2, 30, time.Second * 500))
+	d := month.Decrement(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tmonth.AddDate(-1, -2, -30).Add(time.Second * -500)
 	assert.Exactly(t, td, d.Time)
 
@@ -61,7 +61,7 @@ func TestMonth_Start(t *testing.T) {
 }
 
 func TestMonth_End(t *testing.T) {
-	assert.Exactly(t, month.Time.AddDate(0,1, 0).Add(-1 * time.Nanosecond), month.End().Time)
+	assert.Exactly(t, month.Time.AddDate(0, 1, 0).Add(-1*time.Nanosecond), month.End().Time)
 }
 
 func TestMonth_Contains(t *testing.T) {

@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dustinevan/chron/dura"
-	"github.com/stretchr/testify/assert"
 	"database/sql/driver"
+	"github.com/ratioacct/chron/dura"
+	"github.com/stretchr/testify/assert"
 )
 
 var tday = time.Date(2018, time.February, 1, 0, 0, 0, 0, time.UTC)
@@ -62,7 +62,7 @@ func TestDay_Start(t *testing.T) {
 }
 
 func TestDay_End(t *testing.T) {
-	assert.Exactly(t, day.Time.Add((time.Hour * 24) - time.Nanosecond), day.End().Time)
+	assert.Exactly(t, day.Time.Add((time.Hour*24)-time.Nanosecond), day.End().Time)
 }
 
 func TestDay_Contains(t *testing.T) {

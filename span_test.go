@@ -1,9 +1,9 @@
 package chron
 
 import (
-	"testing"
+	"github.com/ratioacct/chron/dura"
 	"github.com/stretchr/testify/assert"
-	"github.com/dustinevan/chron/dura"
+	"testing"
 	"time"
 )
 

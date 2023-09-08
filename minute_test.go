@@ -1,11 +1,11 @@
 package chron
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/dustinevan/chron/dura"
-	"time"
 	"database/sql/driver"
+	"github.com/ratioacct/chron/dura"
+	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 var tmin = time.Date(2018, time.June, 5, 12, 10, 0, 0, time.UTC)
@@ -36,7 +36,7 @@ func TestMinute_Transfers(t *testing.T) {
 }
 
 func TestMinute_Increment(t *testing.T) {
-	y := min.Increment(dura.NewDuration(1, 2, 30, time.Second * 500))
+	y := min.Increment(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tmin.AddDate(1, 2, 30).Add(time.Second * 500)
 	assert.Exactly(t, td, y.Time)
 }
@@ -46,7 +46,7 @@ func TestMinute_AsTime(t *testing.T) {
 }
 
 func TestMinute_Decrement(t *testing.T) {
-	d := min.Decrement(dura.NewDuration(1, 2, 30, time.Second * 500))
+	d := min.Decrement(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tmin.AddDate(-1, -2, -30).Add(time.Second * -500)
 	assert.Exactly(t, td, d.Time)
 
@@ -61,7 +61,7 @@ func TestMinute_Start(t *testing.T) {
 }
 
 func TestMinute_End(t *testing.T) {
-	assert.Exactly(t, min.Time.Add(time.Minute + (-1 * time.Nanosecond)), min.End().Time)
+	assert.Exactly(t, min.Time.Add(time.Minute+(-1*time.Nanosecond)), min.End().Time)
 }
 
 func TestMinute_Contains(t *testing.T) {
@@ -109,4 +109,3 @@ func TestMinute_UnmarshalJSON(t *testing.T) {
 	assert.Nil(t, m.UnmarshalJSON([]byte("\"2018-06-05T12:10:00Z\"")))
 	assert.Exactly(t, min, m)
 }
-

@@ -3,7 +3,7 @@ package chron
 import (
 	"fmt"
 
-	"github.com/dustinevan/chron/dura"
+	"github.com/ratioacct/chron/dura"
 	"time"
 )
 

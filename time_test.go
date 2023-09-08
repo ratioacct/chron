@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dustinevan/chron/dura"
+	"github.com/ratioacct/chron/dura"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -31,7 +31,7 @@ func TestChron_Transfers(t *testing.T) {
 }
 
 func TestChron_Increment(t *testing.T) {
-	y := chr.Increment(dura.NewDuration(1, 2, 30, time.Nanosecond * 500))
+	y := chr.Increment(dura.NewDuration(1, 2, 30, time.Nanosecond*500))
 	td := tnano.AddDate(1, 2, 30).Add(time.Nanosecond * 500)
 	assert.Exactly(t, td, y.Time)
 }
@@ -41,7 +41,7 @@ func TestChron_AsTime(t *testing.T) {
 }
 
 func TestChron_Decrement(t *testing.T) {
-	d := chr.Decrement(dura.NewDuration(1, 2, 30, time.Nanosecond * 500))
+	d := chr.Decrement(dura.NewDuration(1, 2, 30, time.Nanosecond*500))
 	td := tnano.AddDate(-1, -2, -30).Add(time.Nanosecond * -500)
 	assert.Exactly(t, td, d.Time)
 

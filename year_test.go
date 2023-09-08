@@ -1,11 +1,11 @@
 package chron
 
 import (
-	"github.com/stretchr/testify/assert"
-	"time"
-	"github.com/dustinevan/chron/dura"
 	"database/sql/driver"
+	"github.com/ratioacct/chron/dura"
+	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 var tyear = time.Date(2018, time.January, 1, 0, 0, 0, 0, time.UTC)
@@ -36,7 +36,7 @@ func TestYear_Transfers(t *testing.T) {
 }
 
 func TestYear_Increment(t *testing.T) {
-	y := year.Increment(dura.NewDuration(1, 2, 30, time.Second * 500))
+	y := year.Increment(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tyear.AddDate(1, 2, 30).Add(time.Second * 500)
 	assert.Exactly(t, td, y.Time)
 }
@@ -46,7 +46,7 @@ func TestYear_AsTime(t *testing.T) {
 }
 
 func TestYear_Decrement(t *testing.T) {
-	d := year.Decrement(dura.NewDuration(1, 2, 30, time.Second * 500))
+	d := year.Decrement(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tyear.AddDate(-1, -2, -30).Add(time.Second * -500)
 	assert.Exactly(t, td, d.Time)
 
@@ -61,7 +61,7 @@ func TestYear_Start(t *testing.T) {
 }
 
 func TestYear_End(t *testing.T) {
-	assert.Exactly(t, year.Time.AddDate(1,0, 0).Add(-1 * time.Nanosecond), year.End().Time)
+	assert.Exactly(t, year.Time.AddDate(1, 0, 0).Add(-1*time.Nanosecond), year.End().Time)
 }
 
 func TestYear_Contains(t *testing.T) {

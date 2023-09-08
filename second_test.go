@@ -1,11 +1,11 @@
 package chron
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/dustinevan/chron/dura"
-	"time"
 	"database/sql/driver"
+	"github.com/ratioacct/chron/dura"
+	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 var tsec = time.Date(2018, time.June, 5, 12, 10, 6, 0, time.UTC)
@@ -36,7 +36,7 @@ func TestSecond_Transfers(t *testing.T) {
 }
 
 func TestSecond_Increment(t *testing.T) {
-	y := sec.Increment(dura.NewDuration(1, 2, 30, time.Second * 500))
+	y := sec.Increment(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tsec.AddDate(1, 2, 30).Add(time.Second * 500)
 	assert.Exactly(t, td, y.Time)
 }
@@ -46,7 +46,7 @@ func TestSecond_AsTime(t *testing.T) {
 }
 
 func TestSecond_Decrement(t *testing.T) {
-	d := sec.Decrement(dura.NewDuration(1, 2, 30, time.Second * 500))
+	d := sec.Decrement(dura.NewDuration(1, 2, 30, time.Second*500))
 	td := tsec.AddDate(-1, -2, -30).Add(time.Second * -500)
 	assert.Exactly(t, td, d.Time)
 
@@ -61,7 +61,7 @@ func TestSecond_Start(t *testing.T) {
 }
 
 func TestSecond_End(t *testing.T) {
-	assert.Exactly(t, sec.Time.Add(time.Second + (-1 * time.Nanosecond)), sec.End().Time)
+	assert.Exactly(t, sec.Time.Add(time.Second+(-1*time.Nanosecond)), sec.End().Time)
 }
 
 func TestSecond_Contains(t *testing.T) {
@@ -75,7 +75,7 @@ func TestSecond_Duration(t *testing.T) {
 
 func TestSecond_AddFns(t *testing.T) {
 	assert.Exactly(t, sec.AddYears(2), NewSecond(2020, time.June, 5, 12, 10, 6))
-	assert.Exactly(t, sec.AddMonths(25), NewSecond(2020, time.July, 5, 12, 10,6))
+	assert.Exactly(t, sec.AddMonths(25), NewSecond(2020, time.July, 5, 12, 10, 6))
 	assert.Exactly(t, sec.AddDays(2), NewSecond(2018, time.June, 7, 12, 10, 6))
 	assert.Exactly(t, sec.AddHours(25), NewSecond(2018, time.June, 6, 13, 10, 6))
 	assert.Exactly(t, sec.AddMinutes(72), NewSecond(2018, time.June, 5, 13, 22, 6))
@@ -109,4 +109,3 @@ func TestSecond_UnmarshalJSON(t *testing.T) {
 	assert.Nil(t, m.UnmarshalJSON([]byte("\"2018-06-05T12:10:06Z\"")))
 	assert.Exactly(t, sec, m)
 }
-

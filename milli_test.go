@@ -1,11 +1,11 @@
 package chron
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/dustinevan/chron/dura"
-	"time"
 	"database/sql/driver"
+	"github.com/ratioacct/chron/dura"
+	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 var tmilli = time.Date(2018, time.June, 5, 12, 10, 6, 55000000, time.UTC)
@@ -30,7 +30,7 @@ func TestMilli_Transfers(t *testing.T) {
 }
 
 func TestMilli_Increment(t *testing.T) {
-	y := milli.Increment(dura.NewDuration(1, 2, 30, time.Millisecond * 500))
+	y := milli.Increment(dura.NewDuration(1, 2, 30, time.Millisecond*500))
 	td := tmilli.AddDate(1, 2, 30).Add(time.Millisecond * 500)
 	assert.Exactly(t, td, y.Time)
 }
@@ -40,7 +40,7 @@ func TestMilli_AsTime(t *testing.T) {
 }
 
 func TestMilli_Decrement(t *testing.T) {
-	d := milli.Decrement(dura.NewDuration(1, 2, 30, time.Millisecond * 500))
+	d := milli.Decrement(dura.NewDuration(1, 2, 30, time.Millisecond*500))
 	td := tmilli.AddDate(-1, -2, -30).Add(time.Millisecond * -500)
 	assert.Exactly(t, td, d.Time)
 
@@ -55,7 +55,7 @@ func TestMilli_Start(t *testing.T) {
 }
 
 func TestMilli_End(t *testing.T) {
-	assert.Exactly(t, milli.Time.Add(time.Millisecond + (-1 * time.Nanosecond)), milli.End().Time)
+	assert.Exactly(t, milli.Time.Add(time.Millisecond+(-1*time.Nanosecond)), milli.End().Time)
 }
 
 func TestMilli_Contains(t *testing.T) {
@@ -69,7 +69,7 @@ func TestMilli_Duration(t *testing.T) {
 
 func TestMilli_AddFns(t *testing.T) {
 	assert.Exactly(t, milli.AddYears(2), NewMilli(2020, time.June, 5, 12, 10, 6, 55))
-	assert.Exactly(t, milli.AddMonths(25), NewMilli(2020, time.July, 5, 12, 10,6, 55))
+	assert.Exactly(t, milli.AddMonths(25), NewMilli(2020, time.July, 5, 12, 10, 6, 55))
 	assert.Exactly(t, milli.AddDays(2), NewMilli(2018, time.June, 7, 12, 10, 6, 55))
 	assert.Exactly(t, milli.AddHours(25), NewMilli(2018, time.June, 6, 13, 10, 6, 55))
 	assert.Exactly(t, milli.AddMinutes(72), NewMilli(2018, time.June, 5, 13, 22, 6, 55))
