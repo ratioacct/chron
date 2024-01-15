@@ -99,7 +99,7 @@ func (d Duration) String() string {
 	return fmt.Sprintf("%vy%vm%vd%s", d.Yrs, d.Mons, d.Dys, d.Dur)
 }
 
-// TimeUnit represents a length of time for use in switch statements.
+// Unit represents a length of time for use in switch statements.
 type Unit int
 
 const (

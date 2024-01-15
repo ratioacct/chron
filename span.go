@@ -1,6 +1,7 @@
 package chron
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/ratioacct/chron/dura"
@@ -63,4 +64,28 @@ func (s Interval) End() Chron {
 
 func (s Interval) String() string {
 	return fmt.Sprintf("start:%s, end:%s, len:%s", s.start, s.end, s.d)
+}
+
+func (s Interval) MarshalJSON() ([]byte, error) {
+	return []byte(fmt.Sprintf(`{"start":"%s","end":"%s","len":"%s"}`, s.start, s.end, s.d)), nil
+}
+
+func (s *Interval) UnmarshalJSON(b []byte) error {
+	var start, end, len string
+	if _, err := fmt.Sscanf(string(b), `{"start":"%s","end":"%s","len":"%s"}`, &start, &end, &len); err != nil {
+		return fmt.Errorf("unmarshalling chron.Interval: %w", err)
+	}
+	type tmp struct {
+		Start Chron     `json:"start"`
+		End   Chron     `json:"end"`
+		Len   dura.Time `json:"len"`
+	}
+	var t tmp
+	if err := json.Unmarshal(b, &t); err != nil {
+		return fmt.Errorf("unmarshalling chron.Interval: %w", err)
+	}
+	s.start = t.Start
+	s.end = t.End
+	s.d = t.Len
+	return nil
 }
